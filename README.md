@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+> **This repository is a research fork** of the official [ntt-dkiku/chaos-eater](https://github.com/ntt-dkiku/chaos-eater), maintained by **Naoteru Fujita ([@TeruFujita](https://github.com/TeruFujita))** for thesis / experiment work.
+>
+> - Upstream (official): https://github.com/ntt-dkiku/chaos-eater
+> - Research extensions live under [`pipeline_v0/`](./pipeline_v0/) (see also [`RESEARCH.md`](./RESEARCH.md))
+> - Official trees (`chaos_eater/`, `examples/`, `k8s/`, `docker/`, etc.) are kept for reuse; do not treat this fork as the upstream project.
+
 <p align="center" style="text-align:center">
   <img src="./chaos_eater/frontend/public/chaoseater_logo.png#gh-dark-mode-only" align="center" width="600px">
   <img src="./chaos_eater/frontend/public/chaoseater_logo_lightmode.png#gh-light-mode-only" align="center" width="600px">
