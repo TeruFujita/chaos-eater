@@ -1,0 +1,19 @@
+{
+  "time_schedule": {
+    "pre_validation_time": "60s",
+    "fault_injection_time": "30s",
+    "post_validation_time": "90s",
+    "total_time": "180s",
+    "thought": "Fixed three-phase schedule. No LLM invent."
+  },
+  "pre_validation": {
+    "thought": "Run fixture verify (front-end Ready)."
+  },
+  "fault_injection": {
+    "thought": "Apply fixed PodChaos (pod-kill) to front-end."
+  },
+  "post_validation": {
+    "thought": "Re-run the same verify. NG -> repair LLM (replicas/desired change, not K8s self-heal)."
+  },
+  "summary": "sock-shop-2 paper case: front-end replicas=1; inject pod-kill; verify Ready."
+}

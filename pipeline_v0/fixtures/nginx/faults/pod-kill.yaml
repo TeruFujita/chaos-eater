@@ -1,0 +1,14 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: v0-nginx-pod-kill
+  namespace: chaos-eater
+spec:
+  action: pod-kill
+  mode: one
+  duration: "30s"
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      app: example

@@ -1,0 +1,14 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: v0-sockshop-frontend-pod-kill
+  namespace: chaos-eater
+spec:
+  action: pod-kill
+  mode: one
+  duration: "30s"
+  selector:
+    namespaces:
+      - sock-shop
+    labelSelectors:
+      name: front-end

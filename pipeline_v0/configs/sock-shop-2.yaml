@@ -1,0 +1,20 @@
+# Outer-frame input: official examples/sock-shop-2 (front-end replicas: 1)
+example: sock-shop-2
+example_dir: examples/sock-shop-2
+namespace: sock-shop
+app_ns: sock-shop
+chaos_ns: chaos-eater
+
+verify:
+  - pipeline_v0/fixtures/sock-shop-2/verify/frontend_ready.py
+faults:
+  - pipeline_v0/fixtures/sock-shop-2/faults/pod-kill-frontend.yaml
+plan: pipeline_v0/fixtures/sock-shop-2/plan.json
+
+repair:
+  enabled: true
+  model_size: large
+  agent: chaos_eater.improvement.llm_agents.reconfiguration_agent.ReconfigurationAgent
+
+metrics:
+  out_dir: pipeline_v0/results/sock-shop-2

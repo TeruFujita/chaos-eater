@@ -1,0 +1,21 @@
+# Outer-frame input: official examples/nginx (restartPolicy: Never)
+example: nginx
+example_dir: examples/nginx
+namespace: default
+app_ns: default
+chaos_ns: chaos-eater
+
+verify:
+  - pipeline_v0/fixtures/nginx/verify/pod_running.py
+faults:
+  - pipeline_v0/fixtures/nginx/faults/pod-kill.yaml
+plan: pipeline_v0/fixtures/nginx/plan.json
+
+# Do not hardcode the repair patch (Pod -> Deployment). That is LLM-only.
+repair:
+  enabled: true
+  model_size: large
+  agent: chaos_eater.improvement.llm_agents.reconfiguration_agent.ReconfigurationAgent
+
+metrics:
+  out_dir: pipeline_v0/results/nginx

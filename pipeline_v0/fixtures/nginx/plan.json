@@ -1,0 +1,19 @@
+{
+  "time_schedule": {
+    "pre_validation_time": "30s",
+    "fault_injection_time": "30s",
+    "post_validation_time": "60s",
+    "total_time": "120s",
+    "thought": "Fixed three-phase schedule. No LLM invent."
+  },
+  "pre_validation": {
+    "thought": "Run fixture verify (pod Running >= 90%)."
+  },
+  "fault_injection": {
+    "thought": "Apply fixed PodChaos (pod-kill) to label app=example."
+  },
+  "post_validation": {
+    "thought": "Re-run the same verify. NG -> repair LLM (not hardcoded)."
+  },
+  "summary": "nginx paper case: weak Pod restartPolicy=Never; inject pod-kill; verify Running."
+}
