@@ -1,8 +1,4 @@
-"""Wrap official ChaosEater experiment execution later.
-
-Phase 1 will call chaos_eater.experiment.experimenter.Experimenter.run
-and/or ce_tools. This module only records the intended call.
-"""
+"""Wrap / legacy name — critical path uses inject.py + verify_runner.py directly."""
 from __future__ import annotations
 
 from typing import Any
@@ -14,8 +10,10 @@ def run_fixed_experiment(config: dict[str, Any], *, execute: bool = False) -> di
         return {
             "status": "dry-run",
             "would_apply": faults,
-            "note": "Official Experimenter.run / Chaos Mesh apply is not wired yet.",
+            "note": "Use pipeline_v0 loop --execute (inject_faults).",
         }
-    raise NotImplementedError(
-        "Execute path: apply fixture YAML via chaos_eater.ce_tools, then wait for workflow."
-    )
+    return {
+        "status": "delegated",
+        "note": "loop.py calls inject_faults / run_verifies directly.",
+        "faults": faults,
+    }
