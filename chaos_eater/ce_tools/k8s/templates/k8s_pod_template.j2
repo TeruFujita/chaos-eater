@@ -4,7 +4,9 @@ metadata:
   name: {{ pod_name }}
 spec:
   containers:
-  - name: {{ pod_name }}-container
+  # Container names must be <=63 chars. Do not derive from pod_name
+  # (pod_name + "-container" often exceeds the Kubernetes limit).
+  - name: k8sapi
     image: chaos-eater/k8sapi:1.0
     imagePullPolicy: IfNotPresent
     command: ["/bin/bash", "-c"]

@@ -7,7 +7,8 @@ spec:
     runAsUser: 0
     runAsGroup: 0
   containers:
-  - name: {{ pod_name }}-container
+  # Container names must be <=63 chars. Do not derive from pod_name.
+  - name: k6
     image: grafana/k6:latest
     command: ["k6", "run", "--duration", "{{ duration }}", "--quiet", "/chaos-eater/{{ script_path }}"]
     volumeMounts:

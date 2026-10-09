@@ -64,7 +64,11 @@ def run_pod(
     message_logger = None
 ) -> Tuple[int, str]:
     # write pod manifest
-    pod_name = sanitize_k8s_name(os.path.splitext(inspection.script.fname)[0]) + "-pod"
+    # Keep final pod name <=63: sanitize first, then reserve "-pod" (4 chars).
+    base = sanitize_k8s_name(os.path.splitext(inspection.script.fname)[0])
+    if len(base) > 59:
+        base = base[:59].rstrip("-")
+    pod_name = f"{base}-pod"
     script_path = inspection.script.path
     extension = os.path.splitext(inspection.script.fname)[1]
     if extension == ".js":

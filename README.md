@@ -4,6 +4,8 @@
 > - Upstream (official): https://github.com/ntt-dkiku/chaos-eater
 > - Research extensions live under [`pipeline_v0/`](./pipeline_v0/) (see also [`RESEARCH.md`](./RESEARCH.md))
 > - Official trees (`chaos_eater/`, `examples/`, `k8s/`, `docker/`, etc.) are kept for reuse; do not treat this fork as the upstream project.
+>
+> **Intentional divergence from upstream (2026-10-09):** VaC helper Pod templates used `{{ pod_name }}-container` as the container name. Long steady-state names made that string exceed Kubernetes' **63-character** limit, so `kubectl apply` failed and the official CE cycle aborted in the hypothesis phase (`Pod did not complete successfully.`). This fork fixes that by using short fixed container names (`k8sapi` / `k6`) and keeping the final Pod name ≤63 characters. LLM placement / CE logic is unchanged. **Paper cost/time numbers measured on this fork must be labeled as “upstream + this naming fix,” not as bit-identical upstream.**
 
 <p align="center" style="text-align:center">
   <img src="./chaos_eater/frontend/public/chaoseater_logo.png#gh-dark-mode-only" align="center" width="600px">
